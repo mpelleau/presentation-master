@@ -1,0 +1,800 @@
+\documentclass[french]{beamer}
+\usetheme{MasterII}
+
+\usepackage{macros}
+
+\title{Titre de mon super travail}
+\author{Me, Myself, I}
+\supervisor{Toto, Tata, Tutu}
+\date{Second semestre de l'année 2019-2020}
+
+\begin{document}
+  
+  \maketitle
+  
+  \begin{frame}[noframenumbering]{Contenu}
+    \tableofcontents
+  \end{frame}
+  
+  \section{Le thème MasterII}
+  
+  \begin{frame}[fragile]{Thème MasterII}
+    Ce thème s'inspire du thème metropolis pour Beamer.
+    \begin{block}{Utilisation}
+      Pour l'utiliser il suffit de le préciser dans votre fichier \verb:.tex:
+      \begin{code}
+        \documentclass{beamer}
+        \usetheme{MasterII}
+      \end{code}
+    \end{block}
+  \end{frame}
+  
+  \begin{frame}[fragile]{Thème MasterII}
+    \begin{block}{Options}
+      Vous pouvez précisez diverses options :
+      \begin{itemize}
+        \item le mode : \verb?dark? ou \verb!light! (par défaut)\\
+            \verb:\usetheme[mode = dark]{MasterII}:
+        \item le type de couleurs : \verb?pale? ou \verb!bright! (par défaut)\\
+            \verb:\usetheme[color = pale]{MasterII}:
+        \item la numérotation : \verb?none?, \verb|number| ou \verb!fraction! (par défaut)\\
+            \verb:\usetheme[numbering = number]{MasterII}:
+        \item la barre de progression : \verb?none?, \verb|foot| ou \verb!frametitle! (par défaut)\\
+            \verb:\usetheme[progressbar = foot]{MasterII}:
+      \end{itemize}
+      Vous pouvez bien entendu en précisez plusieurs à la fois : \verb:\usetheme[mode = dark, progressbar = foot]{MasterII}:
+      
+      Des exemples sont donnés à partir de la diapositive \ref{exemples}
+    \end{block}
+  \end{frame}
+    
+  \section{Exemples d'utilisation de Beamer}
+  
+   \begin{frame}[standout]
+     Exemples en Beamer
+   \end{frame}
+  
+  \subsection{Frame}
+  
+  \begin{slide}
+    \frametitle{Frame}
+    \framesubtitle{Exemple de frame}
+    
+    \begin{onlyenv}<1>
+    \begin{block}{}
+      Pour créer une diapositive il suffit d'écrire : 
+      \begin{code}
+        \begin{frame}{Titre}
+          % Contenu de la diapositive
+        \end{frame}
+      \end{code}
+    \end{block}
+    
+    \begin{block}{}
+      On peut ajouter un sous-titre :
+      \begin{code}
+        \begin{frame}{Titre}
+          \framesubtitle{Sous-titre}
+          % Contenu de la diapositive
+        \end{frame}
+      \end{code}
+    \end{block}
+    \end{onlyenv}
+    
+    \begin{onlyenv}<2>
+    \begin{block}{}
+      Une autre façon de le faire est d'écrire :
+      \begin{code}
+        \frame{
+          \frametitle{Titre}
+          % Contenu de la diapositive
+        }
+      \end{code}
+    \end{block}
+    \end{onlyenv}
+  \end{slide}
+    
+  \begin{slide}
+    \frametitle{Frame}
+    \framesubtitle{Avec du code}
+    
+    \begin{block}{} 
+      Dans le cas où l'on veut ajouter du code (avec \verb!listings! ou \verb:verbatim:), il faut ajouter l'option \verb|fragile| :
+      \begin{code}
+        \begin{frame}[fragile]{Titre}
+          % Contenu de la diapositive
+        \end{frame}
+      \end{code}
+    \end{block}
+    
+    \begin{block}{} 
+      Ou définir un environnement
+      \begin{code}
+        \newenvironment{slide}
+          {\begin{frame}[fragile,environment=slide]}
+          {\end{frame}}
+      \end{code}
+      Et remplacer \verb:frame: par \verb:slide: (\verb:\begin{slide}:, \verb:\end{slide}:)
+    \end{block}
+  \end{slide}
+    
+  \begin{slide}
+    \frametitle{Table des matières}
+    
+    \begin{block}{} 
+      Pour ajouter une table des matières vous pouvez utilisez le code suivant :
+      \begin{code}
+        \begin{frame}[noframenumbering]{Table des matières}
+          \tableofcontents
+        \end{frame}
+      \end{code}
+      Notez l'utilisation de \verb:noframenumbering: qui permet de ne pas numéroter la diapositive et qu'elle ne soit pas prise en compte dans le total des diapositives
+    \end{block}
+    \begin{block}{}
+      Référez vous à la documentation pour voir les options en Beamer de la commande \verb:\tableofcontents:, par exemple, pour afficher en avant les élément de la section courante :
+      \begin{code}
+        \tableofcontents[currentsection]
+      \end{code}
+    \end{block}
+  \end{slide}
+  
+  \begin{frame}[noframenumbering]{Table des matières}
+    \tableofcontents[currentsection]
+  \end{frame}
+    
+  \begin{slide}
+    \frametitle{Transition}
+    
+    \begin{block}{} 
+      \begin{code}
+      Vous pouvez ajouter une diapositive de transition grâce à l'option \verb:standout:
+      \begin{frame}[standout]
+        Transition
+      \end{frame}
+      \end{code}
+      Les diapositives de transition ne sont pas numérotées et ne compte pas dans le total des diapositives
+    \end{block}
+  \end{slide}
+  
+  \begin{frame}[standout]
+    Transition
+  \end{frame}
+  
+  \subsection{Les blocs}
+  
+  \begin{frame}[fragile]{3 types de blocs}
+    \begin{block}{Bloc normal}
+      \begin{code}
+        \begin{block}{Bloc normal}
+          % Contenu du bloc
+        \end{block}
+      \end{code}
+    \end{block}
+    \begin{alertblock}{Bloc alert}
+      \begin{code}
+        \begin{alertblock}{Bloc alert}
+          % Contenu du bloc
+        \end{alertblock}
+      \end{code}
+    \end{alertblock}
+    \begin{exampleblock}{Bloc d'exemple}
+      \begin{code}
+        \begin{exampleblock}{Bloc d'exemple}
+          % Contenu du bloc
+        \end{exampleblock}
+      \end{code}
+    \end{exampleblock}
+  \end{frame}
+  
+  \begin{frame}[fragile]{Les blocs personnalisés}
+    \begin{remarque}
+      Vous pouvez créer vos blocs personnalisés
+      \begin{code}
+        \newenvironment{remarque}
+          {\begin{alertblock}{Remarque}}
+          {\end{alertblock}}
+      \end{code}
+    \end{remarque}
+    \begin{essai}
+      Exemple de bloc personnalisé
+      \begin{code}
+        \newenvironment{essai}
+          {\begin{exampleblock}{Essai}}
+          {\end{exampleblock}}
+      \end{code}
+    \end{essai}
+  \end{frame}
+  
+  \begin{frame}[fragile]{Les blocs personnalisés}
+    \framesubtitle{Plus compliqué}
+    \begin{attention}{Mon bloc perso}
+      Vous pouvez créer un ``nouveau" type de block
+      \begin{code}
+        \newenvironment{attention}[1]
+          {\begin{block}{#1}}
+          {\end{block}}
+          
+        \BeforeBeginEnvironment{attention}{
+          \setbeamercolor{block title}{bg=mauve}
+        }
+        \AfterEndEnvironment{attention}{
+          \setbeamercolor{block title}{bg=bleu}
+        }
+      \end{code}
+    \end{attention}
+  \end{frame}
+  
+  \subsection{Animations}
+  
+  \begin{frame}[fragile]{Animation}
+    \begin{block}{\texttt{pause}}
+      On peut animer une présentation \pause en ajoutant des pauses \pause avec la macro \verb:\pause: \pause
+    \end{block}
+    
+    \begin{uncoverenv}<5->
+    \begin{block}{\texttt{uncover}}
+      ou en utilisant l'environnement \verb:uncoverenv: qui réserve la place
+    \end{block}
+    \end{uncoverenv}
+    
+    \begin{onlyenv}<4->
+    \begin{block}{\texttt{only}}
+      ou en utilisant l'environnement \verb:onlyenv: qui ne réserve pas la place
+    \end{block}
+    \end{onlyenv}
+  \end{frame}
+  
+  \begin{frame}{Animation}
+    \begin{remarque}
+      On précise entre chevrons les diapositives auxquelles on souhaite que les éléments apparaissent
+      \begin{itemize}
+        \item<1> \texttt{<1>} uniquement sur la première diapositive et disparait ensuite
+        \item<1, 3, 5> \texttt{<1, 3, 5>} uniquement sur la première, la troisième et la cinquième
+        \item<3-> \texttt{<3->} à partir de la troisième et toutes les suivantes
+        \item<-4> \texttt{<-4>} jusqu'à la quatrième
+      \end{itemize}
+    \end{remarque}
+  \end{frame}
+  
+  \begin{frame}{Animation}
+    \begin{remarque}
+      L'option \texttt{<+->} permet d'afficher les éléments d'une liste
+      \begin{enumerate}[<+->]
+        \item les
+        \item uns
+        \item après
+        \item les
+        \item autres
+        \item<1, 3, 5, 7> à part si précisé
+        \item autrement
+      \end{enumerate}
+    \end{remarque}
+  \end{frame}
+  
+  \begin{frame}[<+->][fragile]{Animation}
+    \begin{block}{}
+      On peut directement passer l'option \verb:<+->: à la frame
+    \end{block}
+    \begin{block}{}
+      pour que les éléments contenus
+    \end{block}
+    \begin{block}{}
+      \begin{itemize}
+        \item apparaissent
+        \item un
+        \item à
+        \item un
+      \end{itemize}
+    \end{block}
+  \end{frame}
+  
+  \begin{frame}[fragile]{Animation}
+    \begin{block}{macros}
+      Quand la diapositive ne contient pas de \texttt{verbatim} ou de \texttt{listing} alors on peut utiliser les macros \verb:\only: et \verb:\uncover: à la place des environnements \verb:onlyenv: et \verb:uncoverenv:
+      \begin{code}
+        \uncover<1->{
+          \begin{block}{}
+            \only<-3>{Apparaît dès la première diapositive}
+            \only<4->{Change à la quatrième} 
+          \end{block}
+        }
+      \end{code}
+      La diapositive suivante illustre cela
+    \end{block}
+  \end{frame}
+  
+  \begin{frame}{Exemples d'animation}
+    \uncover<1->{
+      \begin{block}{}
+        \only<-3>{Apparaît dès la première diapositive}
+        \only<4->{Change à la quatrième} 
+      \end{block}
+    }
+    \uncover<3->{
+      \begin{block}{}
+        Apparaît à partir de la \only<3>\alert{troisième} diapositive (ici l'alert n'est que sur la troisième diapositive
+      \end{block}
+    }
+    \uncover<2->{
+      \begin{block}{}
+        Apparaît à partir de la deuxième diapositive
+      \end{block}
+    }
+  \end{frame}
+  
+  \section{Comme en \LaTeX}
+  \subsection{Mise en forme du texte}
+
+  \begin{frame}[fragile]{Comme en \LaTeX}{Mise en forme du texte}
+    \begin{block}{}
+      Exactement comme en \LaTeX, vous pouvez changer la taille du texte, même si ce n'est pas recommandé
+      \newsavebox\tailletexte
+      \begin{lrbox}{\tailletexte}
+      \begin{minipage}{\textwidth}
+        \begin{tabular}{ll}
+          \verb|{\small petit}| & {\small petit}\\
+          \verb|{\footnotesize plus petit}| & {\footnotesize plus petit}\\
+          \verb|{\scriptsize encore plus petit}| & {\scriptsize encore plus petit}\\
+          \verb|{\tiny très petit}| & {\tiny très petit}\\
+          \verb|{\large grand}| & {\large grand}\\
+          \verb|{\Large plus grand}| & {\Large plus grand}\\
+          \verb|{\LARGE encore plus grand}| & {\LARGE encore plus grand}\\
+          \verb|{\huge très grand}| & {\huge très grand}\\
+          \verb|{\Huge très très grand}| & {\Huge très très grand}
+        \end{tabular}
+      \end{minipage}
+      \end{lrbox}
+      \resizebox{0.9\textwidth}{!}{\usebox\tailletexte}
+    \end{block}
+  \end{frame}
+
+  \begin{frame}[fragile]{Comme en \LaTeX}{Mise en forme du texte}
+    \begin{block}{}
+      Vous pouvez changer la forme et la graisse de la police ou la police elle-même
+      \newsavebox\graissetexte
+      \begin{lrbox}{\graissetexte}
+      \begin{minipage}{\textwidth}
+        \begin{tabular}{ll}
+          \verb|{\bf gras}| ou \verb|\textbf{....}| & {\bf gras} ou \textbf{...}\\
+          \verb|{\it italique}| ou \verb|\textit{...}| & {\it italique} ou \textit{...}\\
+          \verb|{\sc petites capitales}| ou \verb|\textsc{...}| & {\sc petites capitales} ou \textsc{...}\\
+          \verb|{\em emphase}| ou \verb|\emph{...}| & {\em emphase} ou \emph{...}\\
+          \verb|{\tt courrier}| ou \verb|\texttt{...}| & {\tt courrier} ou \texttt{...}\\
+          \verb|{\sf sans sérif}| ou \verb|\textsf{...}| & {\sf sans sérif} ou \textsf{...}
+        \end{tabular}
+      \end{minipage}
+      \end{lrbox}
+      \resizebox{0.85\textwidth}{!}{\usebox\graissetexte}
+    \end{block}
+  \end{frame}
+
+  \begin{frame}[fragile]{Comme en \LaTeX}{Couleurs}
+    \begin{block}{}
+      Vous pouvez définir des couleurs et mettre le texte, en \textcolor{red}{rouge}, \textcolor{orange}{orange}, \textcolor{yellow}{jaune}, \textcolor{green}{vert}, \textcolor{blue}{bleu}
+      
+      Avec une macro en plus spécifique à Beamer \verb:\alert: pour mettre du \alert{texte en alert}
+      
+      Le style de ce texte est défini par le thème, et peut-être changé grâce à la commande \verb:\setbeamercolor{alerted text}{fg=mauve}:
+    \end{block}
+  \end{frame}
+  
+  \subsection{Listes}
+  \begin{frame}[fragile]{Listes à puces}
+    \begin{block}{}
+      On peut faire des listes à puces avec l'environnement \verb|itemize|
+        \begin{itemize}
+          \item premier élément
+          \item deuxième élément
+          \begin{itemize}
+            \item premier sous-élément
+            \begin{itemize}
+              \item Bla bla bla
+              \item Bli bli bli
+            \end{itemize}
+            \item deuxième sous-élément
+          \end{itemize}
+          \item troisième élément
+        \end{itemize}
+    \end{block}
+  \end{frame}
+  
+  \begin{frame}[fragile]{Listes ordonnées}
+    \begin{block}{}
+      On peut faire des listes ordonnées avec l'environnement \verb|enumerate|
+        \begin{enumerate}
+          \item premier élément
+          \item deuxième élément
+          \begin{enumerate}
+            \item premier sous-élément
+            \begin{enumerate}
+              \item Bla bla bla
+              \item Bli bli bli
+            \end{enumerate}
+            \item deuxième sous-élément
+          \end{enumerate}
+          \item troisième élément
+        \end{enumerate}
+    \end{block}
+  \end{frame}
+  
+  \begin{frame}[fragile]{Descriptions}
+    \begin{block}{}
+      On peut aussi faire une liste descriptive avec l'environnement \verb|description|
+        \begin{description}
+          \item[Premier] élément
+          \item[Deuxième] élément
+          \item[Troisième] élément
+          \item[Description longue] élément
+        \end{description}
+    \end{block}
+  \end{frame}
+  
+  \subsection{Citations et références}
+  
+  \begin{frame}{Bibliographie}
+    \begin{block}{}
+      Gérer de la bibliographie avec Bib\TeX
+      \begin{itemize}
+        \item dans le texte \citet{Lamport1986}
+        \item hors de la phrase \citep{Lamport1986}
+        \item plusieurs articles \citep{GoossensMS1994, GoossensRM1997, Klockl2000, Dongen2012}
+        \item à des chapitres de livres \citep[chap 2]{Gratzer2014}
+        \item \citep[voir ][]{Datta2017}
+      \end{itemize}
+    \end{block}
+  \end{frame}
+  
+  \subsection{Théorèmes}
+  
+  \begin{frame}[fragile]{Théorèmes}
+    Le package \verb!amsthm! est inclus par défaut dans Beamer et des environnements sont déjà définis
+    
+      \begin{definition}[Graphe]
+        Un \emph{graphe} est un couple $G = (V, E)$ comprenant
+        \begin{itemize}
+          \item $V$ un ensemble de sommets, 
+          \item et $E \subseteq \{\{x, y\}\ |\ (x, y) \in V^2 \wedge x \neq y\}$ un ensemble d'arêtes
+        \end{itemize}
+      \end{definition}
+      
+      \begin{example}[Graphe quelconque]
+        Soit $V = \{1, 2, 3\}$ et $E = \{\{1, 2\}, \{1, 3\}\}$. Le couple $(V, E)$ est un \emph{graphe}
+      \end{example}
+      
+      \begin{remark}
+        Notez qu'avec Beamer, les théorèmes (définitions, exemples, remarques, \dots) ne sont pas numérotés par défaut
+      \end{remark}
+  \end{frame}
+  
+  \subsection{Tables et figures}
+  
+  \begin{frame}{Figures}
+      Insérer des figures
+      
+      \begin{minipage}[b]{0.3\textwidth}
+      \begin{figure}
+        \centering
+        \includegraphics[width = 0.75\textwidth]{img/logoSmallFond.pdf}
+        \caption{Un magnifique logo}
+      \end{figure}
+      \end{minipage}\hfill
+      \begin{minipage}[b]{0.7\textwidth}
+      \begin{figure}
+         \centering
+          \begin{tikzpicture}[scale = 0.5, rotate = -90, yscale = -1]
+            \draw (0, 0) rectangle (5, 1);
+            \foreach \x in {1, 2, ..., 5}
+              \draw (\x, 0) -- (\x, 1);
+              
+            \draw (0.5, 0.5) node {1};
+            \draw (1.5, 0.5) node {5};
+            \draw (2.5, 0.5) node {3};
+            \draw (3.5, 0.5) node {6};
+            \draw (4.5, 0.5) node {4};
+            
+            \draw[magenta, thick] (2, 1) -- (2, 0);
+            
+            \draw[magenta, ->] (1, -0.2) -- (0, -1.);
+            \draw[magenta, ->] (3.5, -0.2) -- (4.5, -1.);
+            
+            \begin{scope}[yshift=-2.2cm]
+              \draw (-1, 0) rectangle (1, 1);
+              \draw (3, 0) rectangle (6, 1);
+              \foreach \x in {0, 4, 5}
+                \draw (\x, 0) -- (\x, 1);
+                
+              \draw (-0.5, 0.5) node {1};
+              \draw (0.5, 0.5) node {5};
+              \draw (3.5, 0.5) node {3};
+              \draw (4.5, 0.5) node {6};
+              \draw (5.5, 0.5) node {4};
+              
+              \draw[magenta, thick] (0, 1) -- (0, 0);
+              \draw[magenta, thick] (4, 1) -- (4, 0);
+              \draw[magenta, ->] (-0.5, -0.2) -- (-1, -1);
+              \draw[magenta, ->] (0.5, -0.2) -- (1, -1);
+              \draw[magenta, ->] (3.5, -0.2) -- (3, -1);
+              \draw[magenta, ->] (5, -0.2) -- (5.5, -1);
+              
+              \begin{scope}[yshift=-2.2cm]
+                \draw (-1.5, 0) rectangle (-0.5, 1);
+                \draw (0.5, 0) rectangle (1.5, 1);
+                
+                \draw (-1, 0.5) node {1};
+                \draw (1, 0.5) node {5};
+                
+                \draw (2.5, 0) rectangle (3.5, 1);
+                \draw (4.5, 0) rectangle (6.5, 1) (5.5, 0) -- (5.5, 1);
+                
+                \draw (3, 0.5) node {3};
+                \draw (5, 0.5) node {6};
+                \draw (6, 0.5) node {4};
+                
+                \draw[magenta, thick] (5.5, 0) -- (5.5, 1);
+                
+                \draw[vert, <-] (-0.5, -1) -- (-1, -0.2);
+                \draw[vert, <-] (0.5, -1) -- (1, -0.2);
+                \draw[magenta, ->] (5, -0.2) -- (4.5, -1);
+                \draw[magenta, ->] (6, -0.2) -- (6.5, -1);
+                
+                \begin{scope}[yshift=-2.2cm]
+                  \draw (-1, 0) rectangle (1, 1) (0, 0) -- (0, 1);
+                  \draw (-0.5, 0.5) node {1};
+                  \draw (0.5, 0.5) node {5};
+                  
+                  \draw (4, 0) rectangle (5, 1);
+                  \draw (6, 0) rectangle (7, 1);
+                  
+                  \draw (4.5, 0.5) node {6};
+                  \draw (6.5, 0.5) node {4};
+                  
+                  \draw[vert, <-] (5, -1) -- (4.5, -0.2);
+                  \draw[vert, <-] (6, -1) -- (6.5, -0.2);
+                  
+                  \begin{scope}[yshift=-2.2cm]
+                    \draw (4.5, 0) rectangle (6.5, 1) (5.5, 0) -- (5.5, 1);
+                    \draw (6, 0.5) node {6};
+                    \draw (5, 0.5) node {4};
+                    \draw[vert, <-] (3.5, -1) -- (3, 4.2);
+                    \draw[vert, <-] (5, -1) -- (5.5, -0.2);
+                    
+                    \begin{scope}[yshift=-2.2cm]
+                      \draw (3, 0) rectangle (6, 1) (4, 0) -- (4, 1) (5, 0) -- (5, 1);
+                      
+                      \draw (3.5, 0.5) node {3};
+                      \draw (4.5, 0.5) node {4};
+                      \draw (5.5, 0.5) node {6};
+                      
+                      \draw[vert, <-] (1, -1) -- (0, 4.2);
+                      \draw[vert, <-] (3.5, -1) -- (4.5, -0.2);
+                      
+                      \begin{scope}[yshift=-2.2cm]
+                        \draw (0, 0) rectangle (5, 1);
+                        \foreach \x in {1, 2, ..., 5}
+                          \draw (\x, 0) -- (\x, 1);
+                        
+                        \draw (0.5, 0.5) node {1};
+                        \draw (1.5, 0.5) node {3};
+                        \draw (2.5, 0.5) node {4};
+                        \draw (3.5, 0.5) node {5};
+                        \draw (4.5, 0.5) node {6};
+                      \end{scope}
+                    \end{scope}
+                  \end{scope}
+                \end{scope}
+              \end{scope}
+            \end{scope}
+          \end{tikzpicture}
+          \caption{Tri par fusion dessiné avec tikz}
+        \end{figure}
+      \end{minipage}
+  \end{frame}
+  
+  \begin{frame}{Tableaux}
+      Insérer des tableaux
+        \begin{table}
+          \centering
+          \begin{tabular}{l | c || r}
+            \hline
+            \multicolumn{3}{c}{Alignement}\\
+            Gauche & Centre & Droit\\\hline
+            Bla & Bla & Bla\\
+            Riri & Fifi & Loulou\\
+            Toto & Tata & Titi\\
+            Texte aligné à gauche & Texte centré & Texte aligné à droite\\\hline
+          \end{tabular}
+          \caption{Exemple de tableau}
+        \end{table}
+  \end{frame}
+  
+  \subsection{Mathématiques}
+  
+  \begin{frame}{Mathématiques}
+    \begin{block}{}
+      Écrire de très belle formules
+        
+        $\begin{array}{l c l}
+          Z = \min c\cdotp x & & Z_{LR}(\lambda) = \min c\cdotp x + \lambda^T\cdotp(b_h - A_hx)\\
+          \mbox{s.t. }
+          \left\{
+            \begin{array}{l}
+              A_hx \geq b_h\\
+              A_ex \geq b_e\\
+              x \in \{0, 1\}
+            \end{array}
+          \right.
+          & \longrightarrow
+          & \mbox{s.t. }
+          \left\{
+            \begin{array}{l}
+              A_ex \geq b_e\\
+              x \in \{0, 1\}
+            \end{array}
+          \right.
+        \end{array}$
+    \end{block}
+  \end{frame}
+  
+  \section{Couleurs}
+  
+  \begin{frame}[standout]
+    Couleurs prédéfinies
+  \end{frame}
+  
+  \begin{frame}[c]{Palette de couleurs}
+    \vspace{2ex}
+    \begin{columns}[t]
+      \hspace{2ex}
+      \begin{column}{0.5\linewidth}
+        \setbeamercolor{boxdark}{bg=dark,fg=light}
+        \hspace{-0.1\linewidth}
+        \begin{beamercolorbox}[rounded=true, center, dp=35.5ex]{boxdark}
+          \texttt{dark}
+        \end{beamercolorbox}
+        \begin{minipage}[t]{0.9\linewidth}
+          \input{colors}
+        \end{minipage}
+      \end{column}
+      \begin{column}{0.5\linewidth}
+        \setbeamercolor{boxlight}{bg=lighter,fg=dark}
+        \hspace{-0.1\linewidth}
+        \begin{beamercolorbox}[rounded=true, center, dp=35.5ex]{boxlight}
+          \texttt{light}
+        \end{beamercolorbox}
+        \qquad\begin{minipage}[t]{0.9\linewidth}
+          \input{colors}
+        \end{minipage}
+      \end{column}
+    \end{columns}
+  \end{frame}
+  
+  
+  \section{Exemples des autres modes}
+  
+  \begin{frame}[standout]
+    Exemples des autres modes
+  \end{frame}
+  
+  {\darkmode\brightcolors
+  \begin{frame}[fragile]{Exemple du mode \verb;dark; avec couleurs \verb:bright:}\label{exemples}
+    \begin{center}
+      \usebeamercolor[fg]{normal text}
+      \verb:\usetheme[mode = dark]{MasterII}:
+    \end{center}
+                
+    \begin{block}{block}
+      Block en mode \verb.dark.
+    \end{block}
+    \begin{alertblock}{alertblock}
+      Block en mode \verb.dark.
+    \end{alertblock}
+    \begin{exampleblock}{exampleblock}
+      Block en mode \verb.dark.
+    \end{exampleblock}
+  \end{frame}
+  }
+  
+  {\darkmode\palecolors
+  \begin{frame}[fragile]{Exemple du mode \verb;dark; avec couleurs \verb:pale:}
+    \begin{center}
+      \usebeamercolor[fg]{normal text}
+      \verb;\usetheme[mode = dark, color = pale]{MasterII};
+    \end{center}
+            
+    \begin{block}{block}
+      Block en mode \verb.dark.
+    \end{block}
+    \begin{alertblock}{alertblock}
+      Block en mode \verb.dark.
+    \end{alertblock}
+    \begin{exampleblock}{exampleblock}
+      Block en mode \verb.dark.
+    \end{exampleblock}
+  \end{frame}
+  }
+  
+  {\lightmode\brightcolors
+  \begin{frame}[fragile]{Exemple du mode \verb;light; avec couleurs \verb:bright:}
+    \begin{center}
+      \usebeamercolor[fg]{normal text}
+      \verb;\usetheme{MasterII};
+    \end{center}
+        
+    \begin{block}{block}
+      Block en mode \verb.light.
+    \end{block}
+    \begin{alertblock}{alertblock}
+      Block en mode \verb.light.
+    \end{alertblock}
+    \begin{exampleblock}{exampleblock}
+      Block en mode \verb.light.
+    \end{exampleblock}
+  \end{frame}
+  }
+  
+  {\lightmode\palecolors
+  \begin{frame}[fragile]{Exemple du mode \verb;light; avec couleurs \verb:pale:}
+    \begin{center}
+      \usebeamercolor[fg]{normal text}
+      \verb;\usetheme[color = pale]{MasterII};
+    \end{center}
+        
+    \begin{block}{block}
+      Block en mode \verb.light.
+    \end{block}
+    \begin{alertblock}{alertblock}
+      Block en mode \verb.light.
+    \end{alertblock}
+    \begin{exampleblock}{exampleblock}
+      Block en mode \verb.light.
+    \end{exampleblock}
+  \end{frame}
+  }
+  
+  {
+  \setbeamertemplate{frametitle}{\myframetitle}
+  \setbeamertemplate{footline}{\usebeamertemplate{pied de page}}
+  \begin{frame}[fragile]{Exemple sans progressbar}
+    \begin{center}
+      \verb;\usetheme[progressbar = none]{MasterII};
+    \end{center}
+        
+    \begin{block}{block}
+      Block
+    \end{block}
+    \begin{alertblock}{alertblock}
+      Block
+    \end{alertblock}
+    \begin{exampleblock}{exampleblock}
+      Block
+    \end{exampleblock}
+  \end{frame}
+  }
+  
+  {
+  \setbeamertemplate{frametitle}{\myframetitle}
+  \setbeamertemplate{footline}{\usebeamertemplate{pied de page}\usebeamertemplate*{progressbar}}
+  \begin{frame}[fragile]{Exemple progressbar au pied}
+    \begin{center}
+      \verb;\usetheme[progressbar = foot]{MasterII};
+    \end{center}
+        
+    \begin{block}{block}
+      Block
+    \end{block}
+    \begin{alertblock}{alertblock}
+      Block
+    \end{alertblock}
+    \begin{exampleblock}{exampleblock}
+      Block
+    \end{exampleblock}
+  \end{frame}
+  }
+  
+  
+  \bibliographystyle{apalike-fr}
+  \begin{frame}[allowframebreaks]{Références}
+  \bibliography{biblio}
+  \end{frame}
+  
+\end{document}
